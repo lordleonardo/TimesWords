@@ -22,9 +22,10 @@ import javax.faces.context.FacesContext;
 
 /**
  *
- * @author Leo Montes Clase controller, es la que me conecta con la vista es
+ * Clase controller, es la que me conecta con la vista es
  * decir los archivos JSF del proyecto, además contiene toda la lógica de
  * negocio y las conexiones a las clases de persistencia
+ * @author Leo Montes
  */
 @ManagedBean
 @SessionScoped
