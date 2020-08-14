@@ -27,7 +27,8 @@ import javax.xml.bind.annotation.XmlRootElement;
 @NamedQueries({
     @NamedQuery(name = "Resultadohoraminuto.findAll", query = "SELECT r FROM Resultadohoraminuto r"),
     @NamedQuery(name = "Resultadohoraminuto.findByIdresultadohoraminuto", query = "SELECT r FROM Resultadohoraminuto r WHERE r.idresultadohoraminuto = :idresultadohoraminuto"),
-    @NamedQuery(name = "Resultadohoraminuto.findByResultadohoraminuto", query = "SELECT r FROM Resultadohoraminuto r WHERE r.resultadohoraminuto = :resultadohoraminuto")})
+    @NamedQuery(name = "Resultadohoraminuto.findByResultadohoraminuto", query = "SELECT r FROM Resultadohoraminuto r WHERE r.resultadohoraminuto = :resultadohoraminuto"),
+    @NamedQuery(name = "Resultadohoraminuto.findAllCount", query = "SELECT COUNT(p) FROM Resultadohoraminuto p")})
 public class Resultadohoraminuto implements Serializable {
 
     private static final long serialVersionUID = 1L;

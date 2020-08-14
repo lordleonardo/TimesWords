@@ -21,14 +21,8 @@ public interface ResultadoHoraMinutoFacadeLocal {
 
     void create(Resultadohoraminuto resultadohoraminuto);
 
-    void edit(Resultadohoraminuto resultadohoraminuto);
-
-    void remove(Resultadohoraminuto resultadohoraminuto);
-
-    Resultadohoraminuto find(Object id);
-
     List<Resultadohoraminuto> findAll();
 
-    List<Resultadohoraminuto> findRange(int[] range);
+    int count();
 
 }

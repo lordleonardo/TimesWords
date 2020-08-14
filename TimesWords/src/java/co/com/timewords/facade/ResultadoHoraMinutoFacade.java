@@ -5,7 +5,6 @@
  */
 package co.com.timewords.facade;
 
-
 import co.com.timewords.entity.Resultadohoraminuto;
 import co.com.timewords.facade.local.ResultadoHoraMinutoFacadeLocal;
 import javax.ejb.Stateless;
@@ -29,6 +28,12 @@ public class ResultadoHoraMinutoFacade extends AbstractFacade<Resultadohoraminut
 
     public ResultadoHoraMinutoFacade() {
         super(Resultadohoraminuto.class);
+    }
+
+    @Override
+    public int count() {
+        int count = ((Number) em.createNamedQuery("Resultadohoraminuto.findAllCount").getSingleResult()).intValue();
+        return count + 1;
     }
 
 }

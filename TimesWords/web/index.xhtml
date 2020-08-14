@@ -7,30 +7,73 @@
     <h:head>
         <title>Time Words</title>
     </h:head>
-    <h:body style="width: 980px; margin: 0 auto;     font-size: 16px;font-family: sans-serif !important;">
-        <h:form>
+    <h:body style="width: 980px; margin: 0 auto;">
+        <h:form >
+            <h1>The Time in Words</h1>
+            <p:growl id="growle" showDetail="true" sticky="true" /> 
+            <center>
+                <h:panelGrid columns="2">
+                    <p:outputLabel value="Hora:"  />
+                    <p:selectOneMenu  id="idhora" value="#{resultadoHoraMinutoController.horapalabra}">
+                        <f:selectItems value="#{resultadoHoraMinutoController.listaHorapalabra}"
+                                       var="idhora"
+                                       itemValue="#{idhora}"/>
+                    </p:selectOneMenu>
+                    <p:outputLabel value="Minutos:"  />
+                    <p:selectOneMenu  id="idminuto" value="#{resultadoHoraMinutoController.minutopalabra}">
+                        <f:selectItems value="#{resultadoHoraMinutoController.listaMinutopalabra}"
+                                       var="idminuto"
+                                       itemValue="#{idminuto}"/>
+                    </p:selectOneMenu>
+                </h:panelGrid>
+                <p:commandButton value="Aceptar"   actionListener="#{resultadoHoraMinutoController.mostrarHora()}"   update="idresultado,growle,datalist1"/> 
 
+                <br></br>
+                <br></br>
+                <p:outputLabel id="idresultado" style="font-weight: bold;" value="#{resultadoHoraMinutoController.resultadohoraminutog.resultadohoraminuto}"  />
+                <br></br>
+                <hr></hr>
+            <h3><p:outputLabel value="Resultados y valores Almacenados"  /></h3>
+            </center>
 
-            <p:outputLabel value="Hora:"  />
-            <p:selectOneMenu  id="idhora" value="#{resultadoHoraMinutoController.horapalabra}">
-                <f:selectItems value="#{resultadoHoraMinutoController.listaHorapalabra}"
-                               var="idhora"
-                               itemValue="#{idhora}"/>
-            </p:selectOneMenu>
-            <p:outputLabel value="Minutos:"  />
-            <p:selectOneMenu  id="idminuto" value="#{resultadoHoraMinutoController.minutopalabra}">
-                <f:selectItems value="#{resultadoHoraMinutoController.listaMinutopalabra}"
-                               var="idminuto"
-                               itemValue="#{idminuto}"/>
-            </p:selectOneMenu>
-            <p:commandButton value="Aceptar"   action="#{resultadoHoraMinutoController.mostrarHora()}" update="idresultado" 
-                            >
-            </p:commandButton>
-            
-            
-            <p:outputLabel id="idresultado" value="#{resultadoHoraMinutoController.resultadohoraminuto.resultadohoraminuto}"  />
+            <p:dataTable id="datalist1" value="#{resultadoHoraMinutoController.listaResultadohoraminuto}" var="item"
+                         selection="#{resultadoHoraMinutoController.resultadohoraminuto}"
+                         rowKey="#{item.idresultadohoraminuto}"
+                         emptyMessage="No existen registros"
+                         paginatorPosition="bottom"
+                         rowsPerPageTemplate="10,20,30,40,50"
+                         widgetVar="itemTable" 
+                         paginator="true"
+                         rows="13"
+                         >
 
+                <p:column   style="width: 12px;">
+                    <f:facet name="header">
+                        <h:outputText value="N°"/>
+                    </f:facet>
+                    <h:outputText value="#{item.idresultadohoraminuto}"/>
+                </p:column>
+                <p:column   style="width: 125px;">
+                    <f:facet name="header">
+                        <h:outputText value="Resultados"/>
+                    </f:facet>
+                    <h:outputText value="#{item.resultadohoraminuto}"/>
+                </p:column>
+                <p:column   style="width: 125px;">
+                    <f:facet name="header">
+                        <h:outputText value="Horas "/>
+                    </f:facet>
+                    <h:outputText value="#{item.hora}"/>
+                </p:column>
+                <p:column   style="width: 125px;">
+                    <f:facet name="header">
+                        <h:outputText value="Minutos "/>
+                    </f:facet>
+                    <h:outputText value="#{item.minuto}"/>
+                </p:column>
 
+            </p:dataTable>
+            <hr></hr>
         </h:form>
     </h:body>
 </html>

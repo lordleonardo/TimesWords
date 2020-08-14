@@ -17,8 +17,11 @@ import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import org.primefaces.context.RequestContext;
 
 /**
  *
@@ -42,10 +45,13 @@ public class ResultadoHoraMinutoController implements Serializable {
     @EJB
     ResultadoHoraMinutoFacadeLocal ejbFacadeResultado;
     private Resultadohoraminuto resultadohoraminuto;
+    private Resultadohoraminuto resultadohoraminutog;
+    private List<Resultadohoraminuto> listaResultadohoraminuto = null;
 
     @PostConstruct
     public void init() {
-        resultadohoraminuto=new Resultadohoraminuto();
+        resultadohoraminuto = new Resultadohoraminuto();
+        resultadohoraminutog = new Resultadohoraminuto();
     }
 
     public ResultadoHoraMinutoController() {
@@ -65,6 +71,14 @@ public class ResultadoHoraMinutoController implements Serializable {
         this.resultadohoraminuto = resultadohoraminuto;
     }
 
+    public Resultadohoraminuto getResultadohoraminutog() {
+        return resultadohoraminutog;
+    }
+
+    public void setResultadohoraminutog(Resultadohoraminuto resultadohoraminutog) {
+        this.resultadohoraminutog = resultadohoraminutog;
+    }
+   
 
     public List<Horapalabra> getListaHorapalabra() {
         if (listaHorapalabra == null) {
@@ -96,11 +110,22 @@ public class ResultadoHoraMinutoController implements Serializable {
         return listaMinutopalabra;
     }
 
-    public void mostrarHora() {       
+    public List<Resultadohoraminuto> getListaResultadohoraminuto() {
+        if (listaResultadohoraminuto == null) {
+            listaResultadohoraminuto = ejbFacadeResultado.findAll();
+        }
+        return listaResultadohoraminuto;
+    }
+
+    public void setListaResultadohoraminuto(List<Resultadohoraminuto> listaResultadohoraminuto) {
+        this.listaResultadohoraminuto = listaResultadohoraminuto;
+    }
+
+    public void mostrarHora() {
         int hora = Integer.parseInt(horapalabra);
         int minuto = Integer.parseInt(minutopalabra);
-        String resultado="";
-        
+        String resultado = "";
+
         for (Horapalabra listaHorapalabra1 : listaHorapalabra) {
             if (listaHorapalabra1.getIdhorapalabra() == hora) {
                 resultado += listaHorapalabra1.getNombrehorapalabra() + " y ";
@@ -111,17 +136,14 @@ public class ResultadoHoraMinutoController implements Serializable {
                 resultado += " " + listaMinutopalabra1.getNombreminutopalabra();
             }
         }
-        resultadohoraminuto.setResultadohoraminuto(resultado);
-        System.out.println("resultadohoraminuto. = " + resultadohoraminuto.getResultadohoraminuto());
-        resultadohoraminuto.setIdresultadohoraminuto(1);
-        resultadohoraminuto.setHora(hora);
-        resultadohoraminuto.setMinuto(minuto);
-        ejbFacadeResultado.create(resultadohoraminuto);
-        
-        
- 
-       
-        
-        
+        resultadohoraminutog.setResultadohoraminuto(resultado);
+        resultadohoraminutog.setIdresultadohoraminuto(ejbFacadeResultado.count());
+        resultadohoraminutog.setHora(hora);
+        resultadohoraminutog.setMinuto(minuto);
+        ejbFacadeResultado.create(resultadohoraminutog);
+        listaResultadohoraminuto = ejbFacadeResultado.findAll();
+        FacesContext context = FacesContext.getCurrentInstance();
+        context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, "Información", "Los datos se almacenaron con éxito"));
+
     }
 }
