@@ -11,24 +11,12 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
+ * Esta clase define los métodos generales y específicos necesarios para
+ * utilizar en el controller, en este caso solo la lista de la tabla de
+ * minutopalabra
  * @author Leo Montes
  */
-
-
 @Local
 public interface MinutoPalabraFacadeLocal {
-
-    void create(Minutopalabra minutopalabra);
-
-    void edit(Minutopalabra minutopalabra);
-
-    void remove(Minutopalabra minutopalabra);
-
-    Minutopalabra find(Object id);
-
     List<Minutopalabra> findAll();
-
-    List<Minutopalabra> findRange(int[] range);
-
 }

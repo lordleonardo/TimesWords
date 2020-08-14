@@ -8,12 +8,10 @@ package co.com.timewords.controller;
 import co.com.timewords.entity.Horapalabra;
 import co.com.timewords.entity.Minutopalabra;
 import co.com.timewords.entity.Resultadohoraminuto;
-import co.com.timewords.facade.ResultadoHoraMinutoFacade;
 import co.com.timewords.facade.local.HoraPalabraFacadeLocal;
 import co.com.timewords.facade.local.MinutoPalabraFacadeLocal;
 import co.com.timewords.facade.local.ResultadoHoraMinutoFacadeLocal;
 import java.io.Serializable;
-import java.util.Iterator;
 import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.ejb.EJB;
@@ -21,12 +19,12 @@ import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
-import org.primefaces.context.RequestContext;
 
 /**
  *
  * @author Leo Montes Clase controller, es la que me conecta con la vista es
- * decir los archivos JSF del proyecto
+ * decir los archivos JSF del proyecto, además contiene toda la lógica de
+ * negocio y las conexiones a las clases de persistencia
  */
 @ManagedBean
 @SessionScoped
@@ -78,8 +76,14 @@ public class ResultadoHoraMinutoController implements Serializable {
     public void setResultadohoraminutog(Resultadohoraminuto resultadohoraminutog) {
         this.resultadohoraminutog = resultadohoraminutog;
     }
-   
 
+    /**
+     * Obtengo de la tabla horapalabra todos los registros almacenados en base
+     * de datos, desde el ejbFacadeHora.findAll(). En la lista listaHorapalabra
+     * almaceno estos registros obtenidos.
+     *
+     * @return la lista con los registros obtenidos de la base datos
+     */
     public List<Horapalabra> getListaHorapalabra() {
         if (listaHorapalabra == null) {
             listaHorapalabra = ejbFacadeHora.findAll();
@@ -103,6 +107,13 @@ public class ResultadoHoraMinutoController implements Serializable {
         this.horapalabra = horapalabra;
     }
 
+    /**
+     * Obtengo de la tabla minutopalabra todos los registros almacenados en base
+     * de datos, desde el ejbFacadeMinuto.findAll(). En la lista
+     * listaMinutopalabra almaceno estos registros obtenidos.
+     *
+     * @return la lista con los registros obtenidos de la base datos
+     */
     public List<Minutopalabra> getListaMinutopalabra() {
         if (listaMinutopalabra == null) {
             listaMinutopalabra = ejbFacadeMinuto.findAll();
@@ -110,6 +121,13 @@ public class ResultadoHoraMinutoController implements Serializable {
         return listaMinutopalabra;
     }
 
+    /**
+     * Obtengo de la tabla resultadohoraminuto todos los registros almacenados
+     * en base de datos, desde el ejbFacadeResultado.findAll(). En la lista
+     * listaResultadohoraminuto almaceno estos registros obtenidos.
+     *
+     * @return la lista con los registros obtenidos de la base datos
+     */
     public List<Resultadohoraminuto> getListaResultadohoraminuto() {
         if (listaResultadohoraminuto == null) {
             listaResultadohoraminuto = ejbFacadeResultado.findAll();
@@ -121,6 +139,20 @@ public class ResultadoHoraMinutoController implements Serializable {
         this.listaResultadohoraminuto = listaResultadohoraminuto;
     }
 
+    /**
+     * Del formulario obtengo la hora y el minuto, luego recorro la lista
+     * listaHorapalabra, para asi compararla con la del usuario,asi mismo este
+     * registro encontrado se almacena en el atributo resultado. Este mismo
+     * proceso se realiza con la lista listaMinutopalabra. Al final lo que se
+     * almacena en el atributo resultado se pasa al objeto resultadohoraminutog
+     * y y en cada uno de estos atributos sus respectivas variables,hora,minuto.
+     * Para el ID se realiza un método que genera el conteo de la tabla
+     * Resultadohoraminuto y se le suma uno. Luego se almacena el objeto
+     * resultadohoraminutog, se carga de nuevo la lista
+     * listaResultadohoraminuto, para asi ver reflejado los registros en la
+     * tabla. Se finaliza mostrando un mensaje de los datos almacenados con
+     * éxito
+     */
     public void mostrarHora() {
         int hora = Integer.parseInt(horapalabra);
         int minuto = Integer.parseInt(minutopalabra);

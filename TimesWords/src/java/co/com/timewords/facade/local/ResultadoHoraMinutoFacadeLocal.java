@@ -11,11 +11,12 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
+ * Esta clase define los métodos generales y específicos necesarios para
+ * utilizar en el controller, en este utiliza la lista, el crear y el conteo de
+ * la tabla de resultadohoraminuto
  *
  * @author Leo Montes
  */
-
-
 @Local
 public interface ResultadoHoraMinutoFacadeLocal {
 

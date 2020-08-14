@@ -12,6 +12,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
+ * Esta clase le envía el tipo de entidad en este caso Resultadohoraminuto a la
+ * clase abstracta AbstractFacade para realizar el tipo de persistencia luego
+ * implementa los métodos generales a través de la interface
+ * ResultadoHoraMinutoFacadeLocal
  *
  * @author Leo Montes
  */
@@ -30,6 +34,13 @@ public class ResultadoHoraMinutoFacade extends AbstractFacade<Resultadohoraminut
         super(Resultadohoraminuto.class);
     }
 
+    /**
+     * Se implementa el método específico definido en la interface
+     * ResultadoHoraMinutoFacadeLocal, obteniendo una consulta JPQL desde la
+     * entidad Resultadohoraminuto trayendo el valor del conteo para asi sumarle
+     * una unidad
+     * @return conteo de la tabla más un valor
+     */
     @Override
     public int count() {
         int count = ((Number) em.createNamedQuery("Resultadohoraminuto.findAllCount").getSingleResult()).intValue();

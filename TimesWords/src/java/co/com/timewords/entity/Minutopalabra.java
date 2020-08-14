@@ -18,6 +18,8 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * Entidad mapeada desde la base de datos con el nombre de minutopalabra,
+ * utlizando algunas consultas básica par su utilización
  *
  * @author Leo Montes
  */
@@ -29,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Minutopalabra.findByIdminutopalabra", query = "SELECT m FROM Minutopalabra m WHERE m.idminutopalabra = :idminutopalabra"),
     @NamedQuery(name = "Minutopalabra.findByNombreminutopalabra", query = "SELECT m FROM Minutopalabra m WHERE m.nombreminutopalabra = :nombreminutopalabra")})
 public class Minutopalabra implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -41,6 +44,9 @@ public class Minutopalabra implements Serializable {
     @Column(name = "nombreminutopalabra")
     private String nombreminutopalabra;
 
+    /**
+     * Constructores de la clase
+     */
     public Minutopalabra() {
     }
 
@@ -53,6 +59,11 @@ public class Minutopalabra implements Serializable {
         this.nombreminutopalabra = nombreminutopalabra;
     }
 
+    /**
+     * Encapsulo cada uno de los atributos creados en la clase
+     *
+     * @return los atrbutos de cada uno
+     */
     public Integer getIdminutopalabra() {
         return idminutopalabra;
     }
@@ -69,6 +80,11 @@ public class Minutopalabra implements Serializable {
         this.nombreminutopalabra = nombreminutopalabra;
     }
 
+    /**
+     * Algunos métodos útiles de la clase object
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -93,5 +109,5 @@ public class Minutopalabra implements Serializable {
     public String toString() {
         return "" + idminutopalabra + "";
     }
-    
+
 }

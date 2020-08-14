@@ -4,13 +4,17 @@
  * and open the template in the editor.
  */
 package co.com.timewords.facade;
+
 import java.util.List;
 import javax.persistence.EntityManager;
+
 /**
- *
+ * Esta clase genérica, se utiliza para realizar el CRUD o métodos generales de persitencia de cada una de las
+ * entidades mapeadas
  * @author Leo Montes
  */
 public abstract class AbstractFacade<T> {
+
     private Class<T> entityClass;
 
     public AbstractFacade(Class<T> entityClass) {

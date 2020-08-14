@@ -11,24 +11,15 @@ import java.util.List;
 import javax.ejb.Local;
 
 /**
- *
+ * Esta clase define los métodos generales y específicos necesarios para
+ * utilizar en el controller, en este caso solo la lista de la tabla de
+ * horapalabra
  * @author Leo Montes
  */
-
 
 @Local
 public interface HoraPalabraFacadeLocal {
 
-    void create(Horapalabra horapalabra);
-
-    void edit(Horapalabra horapalabra);
-
-    void remove(Horapalabra horapalabra);
-
-    Horapalabra find(Object id);
-
     List<Horapalabra> findAll();
-
-    List<Horapalabra> findRange(int[] range);
 
 }

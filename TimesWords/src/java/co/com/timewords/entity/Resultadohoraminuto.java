@@ -18,6 +18,8 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * Entidad mapeada desde la base de datos con el nombre de resultadohoraminuto,
+ * utlizando algunas consultas básica par su utilización
  *
  * @author Leo Montes
  */
@@ -47,6 +49,9 @@ public class Resultadohoraminuto implements Serializable {
     @Column(name = "minuto")
     private Integer minuto;
 
+    /**
+     * Constructores de la clase
+     */
     public Resultadohoraminuto() {
     }
 
@@ -59,6 +64,11 @@ public class Resultadohoraminuto implements Serializable {
         this.resultadohoraminuto = resultadohoraminuto;
     }
 
+    /**
+     * Encapsulo cada uno de los atributos creados en la clase
+     *
+     * @return los atrbutos de cada uno
+     */
     public Integer getIdresultadohoraminuto() {
         return idresultadohoraminuto;
     }
@@ -90,9 +100,12 @@ public class Resultadohoraminuto implements Serializable {
     public void setMinuto(Integer minuto) {
         this.minuto = minuto;
     }
-    
-    
 
+    /**
+     * Algunos métodos útiles de la clase object
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 0;

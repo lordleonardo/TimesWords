@@ -18,6 +18,8 @@ import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
+ * Entidad mapeada desde la base de datos con el nombre de horapalabra,
+ * utlizando algunas consultas básica par su utilización
  *
  * @author Leo Montes
  */
@@ -29,6 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Horapalabra.findByIdhorapalabra", query = "SELECT h FROM Horapalabra h WHERE h.idhorapalabra = :idhorapalabra"),
     @NamedQuery(name = "Horapalabra.findByNombrehorapalabra", query = "SELECT h FROM Horapalabra h WHERE h.nombrehorapalabra = :nombrehorapalabra")})
 public class Horapalabra implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -41,6 +44,9 @@ public class Horapalabra implements Serializable {
     @Column(name = "nombrehorapalabra")
     private String nombrehorapalabra;
 
+    /**
+     * Constructores de la clase
+     */
     public Horapalabra() {
     }
 
@@ -53,6 +59,11 @@ public class Horapalabra implements Serializable {
         this.nombrehorapalabra = nombrehorapalabra;
     }
 
+    /**
+     * Encapsulo cada uno de los atributos creados en la clase
+     *
+     * @return los atrbutos de cada uno
+     */
     public Integer getIdhorapalabra() {
         return idhorapalabra;
     }
@@ -69,6 +80,11 @@ public class Horapalabra implements Serializable {
         this.nombrehorapalabra = nombrehorapalabra;
     }
 
+    /**
+     * Algunos métodos útiles de la clase object
+     *
+     * @return
+     */
     @Override
     public int hashCode() {
         int hash = 0;
@@ -93,5 +109,5 @@ public class Horapalabra implements Serializable {
     public String toString() {
         return "" + idhorapalabra + "";
     }
-    
+
 }

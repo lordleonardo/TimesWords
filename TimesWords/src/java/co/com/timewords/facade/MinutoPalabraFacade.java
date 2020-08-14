@@ -13,6 +13,10 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 /**
+ * Esta clase le envía el tipo de entidad en este caso Minutopalabra a la clase
+ * abstracta AbstractFacade para realizar el tipo de persistencia luego
+ * implementa los métodos generales a través de la interface
+ * MinutoPalabraFacadeLocal
  *
  * @author Leo Montes
  */
