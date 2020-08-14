@@ -91,7 +91,7 @@ public class Horapalabra implements Serializable {
 
     @Override
     public String toString() {
-        return "co.com.timewords.entity.Horapalabra[ idhorapalabra=" + idhorapalabra + " ]";
+        return "" + idhorapalabra + "";
     }
     
 }

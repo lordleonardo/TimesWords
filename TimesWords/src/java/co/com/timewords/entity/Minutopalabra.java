@@ -91,7 +91,7 @@ public class Minutopalabra implements Serializable {
 
     @Override
     public String toString() {
-        return "co.com.timewords.entity.Minutopalabra[ idminutopalabra=" + idminutopalabra + " ]";
+        return "" + idminutopalabra + "";
     }
     
 }

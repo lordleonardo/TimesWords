@@ -1,14 +1,37 @@
 <?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html">
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <h:head>
-        <title>Facelet Title</title>
+        <title>Time Words</title>
     </h:head>
-    <h:body>
-        Hello from Facelets
-        <br />
-        <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" />
+    <h:body style="width: 980px; margin: 0 auto;     font-size: 16px;font-family: sans-serif !important;">
+        <h:form>
+
+
+            <p:outputLabel value="Hora:"  />
+            <p:selectOneMenu  id="idhora" value="#{resultadoHoraMinutoController.horapalabra}">
+                <f:selectItems value="#{resultadoHoraMinutoController.listaHorapalabra}"
+                               var="idhora"
+                               itemValue="#{idhora}"/>
+            </p:selectOneMenu>
+            <p:outputLabel value="Minutos:"  />
+            <p:selectOneMenu  id="idminuto" value="#{resultadoHoraMinutoController.minutopalabra}">
+                <f:selectItems value="#{resultadoHoraMinutoController.listaMinutopalabra}"
+                               var="idminuto"
+                               itemValue="#{idminuto}"/>
+            </p:selectOneMenu>
+            <p:commandButton value="Aceptar"   action="#{resultadoHoraMinutoController.mostrarHora()}" update="idresultado" 
+                            >
+            </p:commandButton>
+            
+            
+            <p:outputLabel id="idresultado" value="#{resultadoHoraMinutoController.resultadohoraminuto.resultadohoraminuto}"  />
+
+
+        </h:form>
     </h:body>
 </html>
 

@@ -29,6 +29,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Resultadohoraminuto.findByIdresultadohoraminuto", query = "SELECT r FROM Resultadohoraminuto r WHERE r.idresultadohoraminuto = :idresultadohoraminuto"),
     @NamedQuery(name = "Resultadohoraminuto.findByResultadohoraminuto", query = "SELECT r FROM Resultadohoraminuto r WHERE r.resultadohoraminuto = :resultadohoraminuto")})
 public class Resultadohoraminuto implements Serializable {
+
     private static final long serialVersionUID = 1L;
     @Id
     @Basic(optional = false)
@@ -40,6 +41,10 @@ public class Resultadohoraminuto implements Serializable {
     @Size(min = 1, max = 200)
     @Column(name = "resultadohoraminuto")
     private String resultadohoraminuto;
+    @Column(name = "hora")
+    private Integer hora;
+    @Column(name = "minuto")
+    private Integer minuto;
 
     public Resultadohoraminuto() {
     }
@@ -69,6 +74,24 @@ public class Resultadohoraminuto implements Serializable {
         this.resultadohoraminuto = resultadohoraminuto;
     }
 
+    public Integer getHora() {
+        return hora;
+    }
+
+    public void setHora(Integer hora) {
+        this.hora = hora;
+    }
+
+    public Integer getMinuto() {
+        return minuto;
+    }
+
+    public void setMinuto(Integer minuto) {
+        this.minuto = minuto;
+    }
+    
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -93,5 +116,5 @@ public class Resultadohoraminuto implements Serializable {
     public String toString() {
         return "co.com.timewords.entity.Resultadohoraminuto[ idresultadohoraminuto=" + idresultadohoraminuto + " ]";
     }
-    
+
 }
